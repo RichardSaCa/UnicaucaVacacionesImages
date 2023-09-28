@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="suspensionAdministrativos" pageWidth="611" pageHeight="936" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d73f1e83-9cbc-4993-a55a-4a93922e6f99">
+	<parameter name="numReso" class="java.lang.String"/>
+	<parameter name="yearReso" class="java.lang.String"/>
+	<parameter name="dayReso" class="java.lang.String"/>
+	<parameter name="monthReso" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT e.* FROM solicitudes_autorizaciones sa 
+join solicitudes_suspensiones ss on sa.soli_susp_id = ss.id_suspension
+join empleados e on ss.empleado_cedula = e.cedula
+WHERE ( sa.estado = 'AGREGADA' and sa.tipo_autorizacion_id = 2)]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="cedula" class="java.lang.String"/>
+	<sortField name="cedula"/>
+	<variable name="contador" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[0]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="153" splitType="Stretch">
+			<image onErrorType="Icon">
+				<reportElement mode="Transparent" x="49" y="0" width="490" height="140" uuid="5079c591-88cd-460d-916f-5fb609320977">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["http://multimedia.unicauca.edu.co/imagenes/sava/pageHeader.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="434">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="59" y="30" width="469" height="15" isRemoveLineWhenBlank="true" uuid="566163a0-bc1d-44e1-b21e-0d55736c534c">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RESOLUCIÓN No. "+$P{numReso}+" DE "+$P{yearReso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="92" width="469" height="30" isRemoveLineWhenBlank="true" uuid="51a9784e-5d88-427a-b221-417dbc2ccfdc"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EL VICERRECTOR ADMINISTRATIVO DE LA UNIVERSIDAD DEL CAUCA, en uso de las atribuciones delegadas por Resolución Rectoral No. R- 0353 del 23 de abril de 2022 y,"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="227" y="128" width="134" height="20" isRemoveLineWhenBlank="true" uuid="033846b0-abd5-4497-9ce5-db5893d7074e">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CONSIDERANDO QUE:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="194" width="469" height="36" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="0dbe66d1-7da4-4c4b-81ab-7baf924c7bad">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["2- Que la compensación en dinero de las vacaciones está prohibida al margen de las disposiciones consagradas en el Acuerdo Superior 025 del 12 de junio de 2018."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="230" width="469" height="60" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="ec5c9a92-bce5-4a71-b117-06895eef8e4f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["3- Que ante el caso en concreto y por no existir puntualmente dentro de la normativa de la Universidad una disposición que regule lo concerniente a la compensación de vacaciones, se hace necesario acudir al artículo 148 del Acuerdo No 007 de 2006, el cual permite aplicar la norma general en caso de vacío en la norma interna."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="290" width="469" height="60" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="58d047fa-8084-417a-b358-e3de64903965">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["4- Que el Decreto Ley 1045 de 1978 en su articulo 20 dispone que la compensación de las vacaciones en dinero, solo procede en los siguientes casos; 1. Cuando el jefe de la entidad así lo considere necesario para evitar perjudicar la prestación del servicio o 2. Cuando el empleado quede retirado definitivamente de la entidad sin haberlas disfrutado."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="350" width="469" height="36" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="a662c6c3-4f3f-4ae4-80d0-0f26d4b160b4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["5-Que los siguientes funcionarios de La Universidad del Cauca, cumplió los respectivos periodos de vacaciones por Haber trabajado ininterrumpidamente durante cada año."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="386" width="469" height="36" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="1973b92d-611e-423c-a095-592ea7804090">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["6- Que mediante las siguientes resoluciones se suspendió, el disfrute de vacaciones a los empleados Públicos de la Institución que figura a continuación:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="158" width="469" height="36" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="bd8300c2-c80b-4ef0-9bf0-f5398b925916">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1- Que las vacaciones constituyen un derecho del que gozan todos los trabajadores, son un derecho a un descanso remunerado."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="5" width="110" height="20" isRemoveLineWhenBlank="true" uuid="b6982289-a537-4b75-9780-137d033d1082"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["5-90.8"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="59" y="45" width="469" height="20" isRemoveLineWhenBlank="true" uuid="3699a900-f604-4cf8-8103-2b06544ba571"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$P{dayReso}+" de "+$P{monthReso}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34">
+			<printWhenExpression><![CDATA[$V{contador} == 1]]></printWhenExpression>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="330" y="10" width="110" height="23" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="e861cf41-3203-4b47-81e3-bbcb46a50bc4"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RESOLUCION"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="449" y="3" width="72" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="4efdaa51-f327-471c-b8b3-8d29952a5315"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NÚMERO DE DÍAS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="150" y="10" width="90" height="23" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="57e43d6c-a789-491a-975f-da810291eef3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["N O M B R E"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="14">
+			<printWhenExpression><![CDATA[$V{contador} == 1]]></printWhenExpression>
+			<subreport>
+				<reportElement stretchType="ContainerHeight" isPrintRepeatedValues="false" x="-20" y="0" width="611" height="12" uuid="3fcb6a0d-1a3f-4be6-9555-7f6dbe442c6e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["http://multimedia.unicauca.edu.co/documentos/sava/jasper/subreporte_texto3.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="155">
+			<printWhenExpression><![CDATA[$V{contador} == 1]]></printWhenExpression>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="10" width="469" height="72" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="8f05a51f-d9e9-4c57-a009-b0d4ef9fdcec">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["7- Que, de manera excepcional y por necesidad del servicio atendiendo a lo dispuesto en Decreto Ley 1045 de 1978 en su artículo 20 y teniendo en cuenta que quedo pendiente por parte de los funcionarios el disfrute del tiempo faltante para cumplir el plazo de las vacaciones, es procedente la compensación en dinero de los días que quedaron pendientes de disfrutar como consecuencia de la suspensión de las vacaciones."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="82" width="469" height="70" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="bf3f3cdf-cd8b-4042-b690-488b7f1daed2"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["8- Que, a partir de la comunicación y publicación de este acto administrativo, todo periodo vacacional que se exigió compensar por parte de los funcionarios se entiende compensado de acuerdo al artículo 13 del Decreto 1045 de 1978, y en el evento de quedar días pendientes, no son susceptibles de compensación y si es del caso, se debe entrar a disfrutar del periodo vacacional faltante. "]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="141">
+			<printWhenExpression><![CDATA[$V{contador} == 1]]></printWhenExpression>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="0" width="469" height="98" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="a1ab8bb0-ec3d-4388-a544-bbb2494bf57e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["9- Que atendiendo al espíritu de la norma universitaria Acuerdo Superior 025 del 12 de junio de 2018, las vacaciones conllevan como finalidad primordial procurar por medio del descanso la recuperación física y mental del servidor público, para que éste regrese a sus labores en la plenitud de sus capacidades y pueda contribuir eficazmente al incremento de la productividad del correspondiente ente universitario, en consecuencia a partir de la fecha  de comunicación y publicación de este acto administrativo, todo funcionario de la Institución deberá sujetarse a lo dispuesto en esta normatividad. "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="98" width="469" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="3eef95d4-59a6-47e5-b412-a67d44433df1"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["En atención a lo anterior, "]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="165">
+			<printWhenExpression><![CDATA[$V{contador} == 1]]></printWhenExpression>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="0" width="469" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="3a2dce3f-83c5-40e4-a19e-dab926b6190d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RESUELVE: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="30" width="469" height="60" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="13e3f34a-f75d-452b-819b-aa02c586ba43"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ARTICULO PRIMERO: Compensar por el periodo correspondiente, las vacaciones no disfrutadas en su totalidad, de los funcionarios relacionados en la parte considerativa del presente acto administrativo, teniendo en cuenta que  por necesidad del servicio y para evitar perjuicios en el servicio público se suspendieron dichos periodos vacacionales. "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="90" width="469" height="36" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="3682e8eb-dbe7-4a15-a6a1-4ed5e7055708">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ARTICULO SEGUNDO: Ordenar el pago de compensación de vacaciones por el periodo correspondiente a los funcionarios enunciados en la parte considerativa por el siguiente valor:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="410" y="133" width="72" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="2e4fedfc-f9fb-4cf0-ae3d-e7e35545a61f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NÚMERO DE DÍAS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="309" y="140" width="76" height="23" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="bcfd6e3d-ec92-4381-84ff-c4a2d07f8d87"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VALOR($)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="110" y="140" width="90" height="23" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="077a3e03-e8d6-4ca7-994d-36d657f7414f"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["N O M B R E"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="13">
+			<printWhenExpression><![CDATA[$V{contador} == 1]]></printWhenExpression>
+			<subreport>
+				<reportElement stretchType="ContainerHeight" isPrintRepeatedValues="false" x="-20" y="0" width="611" height="12" uuid="ef6b88a1-1cc6-4414-a319-1fd6ba494cf0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["http://multimedia.unicauca.edu.co/documentos/sava/jasper/subreporte_texto.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="164">
+			<printWhenExpression><![CDATA[$V{contador} == 1]]></printWhenExpression>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="120" width="469" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="9921413d-866a-4d51-9ec6-891fb31fb9c2">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Se firma en Popayán, a los "+$P{dayReso}+" días de "+$P{monthReso}+" de "+$P{yearReso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="20" width="469" height="40" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="e2509df9-2ee9-4e08-b906-3739e7757a5e">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ARTÍCULO TERCERO: Ordenar el pago de los reajustes a que haya lugar para los funcionarios relacionados, conforme el Artículo 135 del Acuerdo 007 de 2006, emanado del Consejo Superior de la Universidad del Cauca."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="60" y="80" width="469" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="e88660d6-3860-42b2-85ce-1193cef2ef1c">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["COMUNIQUESE Y CUMPLASE"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="121">
+			<printWhenExpression><![CDATA[$V{contador} == 1]]></printWhenExpression>
+			<staticText>
+				<reportElement x="150" y="60" width="318" height="39" uuid="6f9b7cc8-a338-4bf6-b2fd-ad0d08465d28"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[
+AIDA PATRICIA GONZÁLEZ NIEVA
+Vicerrectora Administrativa
+
+
+
+
+
+
+
+
+JORGE ENRIQUE BARRERA MORENO
+Vicerrector Administrativo
+]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="124" splitType="Stretch">
+			<image onErrorType="Icon">
+				<reportElement mode="Transparent" x="58" y="10" width="470" height="100" uuid="130a178d-a1f5-4771-864f-594333dd4a7e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["http://multimedia.unicauca.edu.co/imagenes/sava/pageFooter.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>
